@@ -58,6 +58,7 @@
       GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 
     <script src="{{asset 'js/head-scripts.min.js'}}"></script>
 
@@ -65,7 +66,7 @@
   </head>
   <body class="{{body_class}}">
 
-    {{> drawer this}}
+    {{navigation}}
 
     <div class="drawer-overlay"></div>
     <main id="container" role="main" class="container">
