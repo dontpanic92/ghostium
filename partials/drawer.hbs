@@ -3,6 +3,14 @@
   <div class="drawer-container">
     <!--.drawer-search(role="search")-->
     <ul role="navigation" class="drawer-list">
+      <li class="drawer-list-item">
+        <a href="/" data-pjax>
+          <i class="fa fa-home"></i>Home
+        </a>
+      </li>
+        {{#foreach navigation}}
+          <li class="drawer-list-item nav-{{slug}}{{#if current}} nav-current{{/if}}" role="presentation"><a href="{{url absolute="true"}}">{{label}}</a></li>
+        {{/foreach}}
       {{> custom/navigation this}}
     </ul>
   </div>
