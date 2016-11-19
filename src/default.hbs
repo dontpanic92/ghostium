@@ -61,7 +61,7 @@
       // ==============
       window.GHOSTIUM = {};
       GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
-      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
+      GHOSTIUM.haveDuoshuo = typeof duoshuo_shortname !== 'undefined' && duoshuo_shortname !== 'example';
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
     </script>
     <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
@@ -124,7 +124,7 @@
     <!-- endbuild -->
 
     <script type="text/javascript">
-
+    
       if(GHOSTIUM.haveGA) {
         (function(g,h,o,s,t,z){g.GoogleAnalyticsObject=s;g[s]||(g[s]=
         function(){(g[s].q=g[s].q||[]).push(arguments)});g[s].s=+new Date;
@@ -133,15 +133,7 @@
         z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
         ga('create',ga_ua);ga('send','pageview');
       }
-
-      if(GHOSTIUM.haveDisqus) {
-        (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-        }());
-      }
+      
     </script>
   </body>
 </html>
