@@ -43,51 +43,16 @@
 
     // DISQUS Handlers
     // =================
-    var _disqusHandler = function() {
-      if(!GHOSTIUM.haveDisqus) return;
-
-      if(typeof DISQUS === 'object' && $('#disqus_thread').length) {
-        DISQUS.reset({
-          reload: true,
-          config: function () {
-            this.page.identifier = disqus_identifier;
-          }
-        });
+    var _duoshuoHandler = function() {
+      if(!GHOSTIUM.haveDuoshuo) return;
+      if ($('.ds-thread').length > 0 || $('.ds-thread-count').length > 0) { 
+        if (typeof DUOSHUO !== 'undefined') {
+          DUOSHUO.EmbedThread('.ds-thread');
+          DUOSHUO.ThreadCount($('.ds-thread-count')); 
+        } else 
+          $.getScript("//static.duoshuo.com/embed.js");  
       }
     };
-
-    var _disqusCounterHandler = function() {
-      if(!GHOSTIUM.haveDisqus) {
-        $('[data-disqus-identifier]').parent('li').remove();
-        return;
-      }
-
-      if(typeof DISQUSWIDGETS === 'object') {
-        var $identifiers = $body.find('[data-disqus-identifier]'),
-            $script      = $head.find('script[src*="disqus.com/count-data.js"]');
-
-        var posts = $identifiers
-          .map(function() {
-            return '1=' + encodeURIComponent($(this).data('disqus-identifier'));
-          })
-          .sort()
-          .get()
-        ;
-
-        $script.remove();
-
-        if(posts.length) {
-          $head.append($('<script/>', {
-            async: true,
-            src: '//' + window.disqus_shortname + '.disqus.com/count.js?' + posts.join('&')
-          }));
-
-          DISQUSWIDGETS.getCount();
-        }
-      }
-    };
-
-    _disqusCounterHandler();
 
     // GA Handler
     // =================
@@ -108,9 +73,8 @@
       });
 
       $document.on('pjax:end', function() {
-        _disqusHandler();
+        _duoshuoHandler();
         _gaHandler();
-        _disqusCounterHandler();
         _prismHandler();
 
         $('[data-load-image]', $content).each(function() {
@@ -231,7 +195,7 @@
     // Fix DISQUS iframe does not resize on mobile orientation change
     // =================
     $window.on('orientationchange', function(e) {
-      _disqusHandler();
+      _duoshuoHandler();
     });
 
   });

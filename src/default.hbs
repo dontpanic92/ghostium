@@ -63,7 +63,11 @@
       GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
       GHOSTIUM.haveDuoshuo = typeof duoshuo_shortname !== 'undefined' && duoshuo_shortname !== 'example';
       GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+      if (GHOSTIUM.haveDuoshuo) {
+        duoshuoQuery = {short_name:duoshuo_shortname};
+      }
     </script>
+    <script src="//static.duoshuo.com/embed.js"></script>
     <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 
     <!-- build:js /assets/js/head-scripts.min.js -->
@@ -133,7 +137,7 @@
         z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
         ga('create',ga_ua);ga('send','pageview');
       }
-      
+
     </script>
   </body>
 </html>
