@@ -15,16 +15,17 @@
               {{#if tags}}
                 <li class="post-meta-item">
                   {{#foreach tags}}
-                    <a itemprop="{{#if @first}}articleSection{{else}}keywords{{/if}}" href="{{url}}" data-pjax>{{name}}</a>
+                    <a itemprop="{{#if @first}}articleSection{{else}}keywords{{/if}}" href="{{url}}">{{name}}</a>
                     {{~#if @last}} {{else}}, {{/if}}
                   {{/foreach}}
                 </li>
               {{/if}}
               <li class="post-meta-item">
+                <a href="#disqus_thread" data-disqus-identifier="{{id}}">Comments</a>
                 <a href="#ds_thread"><span class="ds-thread-count" data-thread-key="{{id}}" data-count-type="comments"></span></a>
               </li>
             </ul>
-            <h1 itemprop="name headline" class="post-title"><a href="{{url}}" itemprop="url" data-pjax title="{{{title}}}">{{{title}}}</a></h1>
+            <h1 itemprop="name headline" class="post-title"><a href="{{url}}" itemprop="url" title="{{{title}}}">{{{title}}}</a></h1>
             {{! A subtitle not available in Ghosts yet }}
             <!--h2 itemprop="about" class="post-subtitle"></h2-->
           </header>
@@ -82,9 +83,8 @@
           </footer>
         </section>
       <section itemprop="comment" class="post-comments">
-        <!-- 多说评论框 start -->
-          <div class="ds-thread" data-thread-key="{{id}}" data-title="{{title}}" data-url="{{url absolute="true"}}"></div>
-        <!-- 多说评论框 end -->
+        <div id="disqus_thread"></div>
+        <div class="ds-thread" data-thread-key="{{id}}" data-title="{{title}}" data-url="{{url absolute="true"}}"></div>
       </section>
       {{/post}}
     </article>
@@ -92,21 +92,3 @@
     {{> footer this}}
   </div>
 </section>
-
-
-
-<!--script type="text/javascript">
-  if(GHOSTIUM.haveDuoshuo) {
-      var duoshuoQuery = {short_name: duoshuo_shortname};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0] 
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  } else {
-    document.querySelector('.post-comments').remove();
-  }
-</script-->

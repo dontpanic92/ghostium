@@ -33,8 +33,6 @@
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
     <link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon">
 
-    <link href="//fonts.proxy.ustclug.org/" rel="dns-prefetch">
-    <link href="//fonts.proxy.ustclug.org/css?family=Noto+Serif:400,700,400italic|Open+Sans:700,400&subset=latin,latin-ext" rel="stylesheet">
 
     <!-- build:css({src,.tmp}) /assets/css/main.min.css -->
     <link href="/assets/_components/font-awesome/css/font-awesome.css">
@@ -42,32 +40,22 @@
     <link href="/assets/_components/prism/plugins/autolinker/prism-autolinker.css">
     <link href="/assets/_components/pace/themes/pace-theme-minimal.css">
     <link href="/assets/css/style.css">
+    <link href="/assets/css/font.css">
     <!-- endbuild -->
 
     <script type="text/javascript">
       {{> custom/config}}
-
-      // Pace Options
-      // ==============
-      window.paceOptions = {
-        catchupTime: 100,
-        minTime: 100,
-        elements: false,
-        restartOnRequestAfter: 500,
-        startOnPageLoad: false
-      }
 
       // Ghostium Globals
       // ==============
       window.GHOSTIUM = {};
       GHOSTIUM.haveGA = typeof ga_ua !== 'undefined' && ga_ua !== 'UA-XXXXX-X';
       GHOSTIUM.haveDuoshuo = typeof duoshuo_shortname !== 'undefined' && duoshuo_shortname !== 'example';
-      GHOSTIUM.enablePjax = typeof enable_pjax !== 'undefined' ? enable_pjax : true;
+      GHOSTIUM.haveDisqus = typeof disqus_shortname !== 'undefined' && disqus_shortname !== 'example';
       if (GHOSTIUM.haveDuoshuo) {
         duoshuoQuery = {short_name:duoshuo_shortname};
       }
     </script>
-    <script src="//static.duoshuo.com/embed.js"></script>
     <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 
     <!-- build:js /assets/js/head-scripts.min.js -->
@@ -85,7 +73,7 @@
     <main id="container" role="main" class="container">
       <div class="surface">
         <div class="surface-container">
-          <div data-pjax-container class="content">
+          <div class="content">
             {{{body}}}
           </div>
         </div>
@@ -121,7 +109,6 @@
     <script src="/assets/_components/prism/components/prism-sql.js"></script>
     <script src="/assets/_components/prism/plugins/autolinker/prism-autolinker.js"></script>
 
-    <script src="/assets/_components/jquery-pjax/jquery.pjax.js"></script>
     <script src="/assets/js/drawer.js"></script>
     <script src="/assets/js/imageLoader.js"></script>
     <script src="/assets/js/scripts.js"></script>
@@ -137,6 +124,39 @@
         z.parentNode.insertBefore(t,z)}(window,document,'script','ga'));
         ga('create',ga_ua);ga('send','pageview');
       }
+
+      if(GHOSTIUM.haveDuoshuo) {
+        (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0] 
+          || document.getElementsByTagName('body')[0]).appendChild(ds);
+        })();
+      }
+
+     if(GHOSTIUM.haveDisqus) {
+        {{#post}}
+        var disqus_identifier = '{{id}}';
+        {{/post}}
+
+        (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+        
+        if(typeof DISQUS !== 'object') {
+          (function () {
+          var s = document.createElement('script'); s.async = true;
+          s.type = 'text/javascript';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+          }());
+        }
+     }
 
     </script>
   </body>

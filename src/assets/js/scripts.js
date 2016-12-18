@@ -65,35 +65,6 @@
       }
     };
 
-    // PJax bindings
-    // =================
-    if ($.support.pjax && GHOSTIUM.enablePjax) {
-      $document.on('pjax:start', function() {
-        $surface.scrollTop(0);
-      });
-
-      $document.on('pjax:end', function() {
-        _duoshuoHandler();
-        _gaHandler();
-        _prismHandler();
-
-        $('[data-load-image]', $content).each(function() {
-          ImageLoader.load($(this));
-        });
-      });
-
-      var _pjaxOptions = {
-        container: '[data-pjax-container]',
-        fragment: '[data-pjax-container]'
-      };
-
-      $document.pjax('a[data-pjax]', _pjaxOptions);
-
-      $document.on('submit', 'form[data-pjax]', function(e) {
-        $.pjax.submit(e, _pjaxOptions);
-      });
-    }
-
     // Data API bindings
     // =================
     $document.on('click', '[data-action]', function(e) {

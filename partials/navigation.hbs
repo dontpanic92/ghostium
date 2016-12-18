@@ -4,19 +4,19 @@
     <!--.drawer-search(role="search")-->
     <ul role="navigation" class="drawer-list">
       <li class="drawer-list-item">
-        <a href="/" data-pjax>
-          <i class="fa fa-home"></i>首页
+        <a href="/">
+          <i class="fa fa-home"></i>Home
         </a>
       </li>
       
       {{#foreach navigation}}
-          <li class="drawer-list-item nav-{{slug}}{{#if current}} nav-current{{/if}}" role="presentation"><a href="{{url absolute="true"}}"><i class="fa fa-arrow-right"></i>{{label}}</a></li>
+          <li class="drawer-list-item nav-{{slug}}{{#if current}} nav-current{{/if}}" role="presentation"><a href="{{url absolute="true"}}"><i class="fa fa-angle-double-right"></i>{{label}}</a></li>
       {{/foreach}}
 
       {{#if @labs.subscribers}}
-          <li class="drawer-list-item nav-{{slug}}{{#if current}} nav-current{{/if}}" role="presentation"><a href="{{@blog.url}}/subscribe/"><i class="fa fa-rss"></i>订阅</a>
+          <li class="drawer-list-item nav-{{slug}}{{#if current}} nav-current{{/if}}" role="presentation"><a href="{{@blog.url}}/subscribe/"><i class="fa fa-rss"></i>Subscribe</a>
       {{else}}
-          <li class="drawer-list-item nav-{{slug}}{{#if current}} nav-current{{/if}}" role="presentation"><a href="{{@blog.url}}/rss/"><i class="fa fa-rss"></i>订阅</a>
+          <li class="drawer-list-item nav-{{slug}}{{#if current}} nav-current{{/if}}" role="presentation"><a href="{{@blog.url}}/rss/"><i class="fa fa-rss"></i>Subscribe</a>
       {{/if}}
       {{> custom/navigation this}}
     </ul>
